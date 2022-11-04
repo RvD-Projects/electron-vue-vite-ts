@@ -46,7 +46,7 @@ jobs:
         category: "/language:${{matrix.language}}"
 
   build:
-
+    name: Build
     runs-on: ${{ matrix.os }}
 
     strategy:
