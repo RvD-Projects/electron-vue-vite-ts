@@ -68,7 +68,6 @@ jobs:
         uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
         with:
           # npm cache files are stored in `~/.npm` on Linux/macOS
@@ -81,10 +80,15 @@ jobs:
 
       - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
         name: List the state of node modules
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
         continue-on-error: true
         run: npm list
 
       - run: npm install
+
+      - name: Build/Text-Run
       - run: npm run build --if-present
       - run: npm run test --if-present
       - run: npm run serve --if-present
