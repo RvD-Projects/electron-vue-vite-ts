@@ -61,25 +61,14 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           node-version: ${{ matrix.node-version }}
         env:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - run: npm ci
-        env:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - run: npm run build --if-present
-        env:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
+      - run: GH_TOKEN=${{ secrets.GITHUB_TOKEN }} npm run build --if-present
       - run: npm run test --if-present
-        env:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          
       - run: npm run serve --if-present
-        env:
-          token: ${{ secrets.GITHUB_TOKEN }}
+
 
