@@ -43,6 +43,7 @@ jobs:
         uses: github/codeql-action/analyze@v2
         with:
           category: "/language:${{matrix.language}}"
+
        
       - uses: actions/checkout@v3
         with:
@@ -59,6 +60,13 @@ jobs:
         env:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - uses: doyensec/electronegativity-action@v1.1
+
+      - name: Upload sarif
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: ../results
+
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
         with:
@@ -67,8 +75,6 @@ jobs:
           # Release the app after building If the branch tsarts with "release"
           release: ${{ startsWith(github.ref, 'refs/heads/release') }}
 
-      - run: npm run serve
-        timeout-minutes: 2
         
 
    
