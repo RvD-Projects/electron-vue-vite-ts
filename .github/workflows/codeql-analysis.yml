@@ -1,11 +1,12 @@
 name: "CodeQL"
 
 on:
+  create:
+    branches : ["dev", "releases/**"]
   push:
-    branches: ["dev"]
+    branches: ["dev", "releases/**"]
   pull_request:
-    # The branches below must be a subset of the branches above
-    branches: ["dev"]
+    branches: ["dev", "releases/**"]
 
 jobs:
   analyze:
