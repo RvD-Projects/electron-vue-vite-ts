@@ -31,16 +31,6 @@
 
   "build": {
     "appId": "com.rvdprojects.electronApp",
-    "forceCodeSigning" : false,
-
-    "win": {
-      
-    },
-    "mac": {
-      
-    },
-    "linux": {
-
-    }
+    "forceCodeSigning" : false
   }
 }
