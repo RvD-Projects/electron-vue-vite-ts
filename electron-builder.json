@@ -1,5 +1,5 @@
 {
-    "appId": "com.electron.app",
+    "appId": "com.rvdprojects.electron",
     "directories": {
         "output": "dist"
     },

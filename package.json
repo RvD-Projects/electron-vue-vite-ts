@@ -1,6 +1,6 @@
 {
-  "name": "electron-vue-template",
-  "version": "0.1.0",
+  "name": "electron-vue-vite-ts-template",
+  "version": "1.0.0",
   "description": "A minimal Electron + Vue application",
   "main": "build/main/main.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "build:mac": "node scripts/build.js && electron-builder --mac",
     "build:linux": "node scripts/build.js && electron-builder --linux"
   },
-  "repository": "https://github.com/deluze/electron-vue-template",
+  "repository": "https://github.com/RvD-Projects/electron-vue-vite-ts",
   "author": {
     "name": "Izocel",
     "url": "https://github.com/Izocel"
