@@ -81,7 +81,7 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
         continue-on-error: false
-        run: npm install
+      - run: npm install
 
       - name: Build/Test/Run
         uses: actions/checkout@v3
