@@ -59,12 +59,10 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           node-version: ${{ matrix.node-version }}
-
-      - uses: actions/checkout@v3
+      
       - name: Cache node modules
-        id: cache-npm
+        id: cache-npm0
         uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
@@ -79,16 +77,18 @@ jobs:
             ${{ runner.os }}-
 
       - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-        name: List the state of node modules
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        name: Install deps
+        with:
+          github_token: ${{ secrets.github_token }}
+        continue-on-error: false
+        run: npm install
 
-        continue-on-error: true
-        run: npm list
+      - name: Build/Test/Run
+        uses: actions/checkout@v3
+        with:
+          github_token: ${{ secrets.github_token }}
 
-      - run: npm install
-
-      - name: Build/Text-Run
+      - run: npm list
       - run: npm run build --if-present
       - run: npm run test --if-present
       - run: npm run serve --if-present
