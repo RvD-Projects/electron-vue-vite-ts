@@ -83,8 +83,8 @@ jobs:
         continue-on-error: true
         run: npm ci
 
-      - run: npm list
-      - run: npm build
-      - run: npm test --if-present
-      - run: npm serve --if-present
+      - run: npm run list
+      - run: npm run build
+      - run: npm run test --if-present
+      - run: npm run serve --if-present
 
