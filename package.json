@@ -12,13 +12,13 @@
   },
   "repository": "https://github.com/deluze/electron-vue-template",
   "author": {
-    "name": "Deluze",
-    "url": "https://github.com/Deluze"
+    "name": "Izocel",
+    "url": "https://github.com/Izocel"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.1.2",
     "@vue/cli": "^5.0.8",
-    "chalk": "^5.1.2",
+    "chalk": "^4.1.2",
     "chokidar": "^3.5.3",
     "electron": "^21.0.0",
     "electron-builder": "^23.6.0",
