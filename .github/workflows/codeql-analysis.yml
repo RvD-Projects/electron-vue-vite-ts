@@ -59,10 +59,9 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           node-version: ${{ matrix.node-version }}
-          
+
       - uses: actions/checkout@v3
       - name: Cache node modules
         id: cache-npm
