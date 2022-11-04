@@ -81,7 +81,7 @@ jobs:
         env: 
           token: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: false
-        run: npm ci
+        run: npm install
 
       - run: npm list
       - run: npm run build
