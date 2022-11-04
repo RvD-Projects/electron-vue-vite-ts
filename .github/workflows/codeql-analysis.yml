@@ -81,15 +81,25 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
         continue-on-error: false
-      - run: npm install
+        run: npm install
 
-      - name: Build/Test/Run
-        uses: actions/checkout@v3
+      - name: Installed
         with:
           github_token: ${{ secrets.github_token }}
+        run: npm list
 
-      - run: npm list
-      - run: npm run build --if-present
-      - run: npm run test --if-present
-      - run: npm run serve --if-present
+      - name: Build
+        with:
+          github_token: ${{ secrets.github_token }}
+        run: npm build
+
+      - name: Test
+        with:
+          github_token: ${{ secrets.github_token }}
+        run: npm test --if-present
+
+      - name: Serve
+        with:
+          github_token: ${{ secrets.github_token }}
+        run: npm serve --if-present
 
