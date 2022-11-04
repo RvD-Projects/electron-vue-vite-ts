@@ -6,8 +6,6 @@ on:
   pull_request:
     # The branches below must be a subset of the branches above
     branches: ["dev"]
-  schedule:
-    - cron: "24 23 * * 4"
 
 jobs:
   analyze:
@@ -68,7 +66,7 @@ jobs:
           # If the commit is tagged with a version (e.g. "v1.0.0"),
           # release the app after building
           release: ${{ startsWith(github.ref, 'refs/tags/v') }}
-          
+
       - run: npm run serve
 
    
