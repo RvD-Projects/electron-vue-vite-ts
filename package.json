@@ -27,5 +27,20 @@
   },
   "dependencies": {
     "vue": "^3.2.40"
+  },
+
+  "build": {
+    "appId": "com.rvdprojects.electronApp",
+    "forceCodeSigning" : true,
+
+    "win": {
+      
+    },
+    "mac": {
+      
+    },
+    "linux": {
+
+    }
   }
 }
