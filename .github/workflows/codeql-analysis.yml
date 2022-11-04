@@ -80,10 +80,10 @@ jobs:
         name: Install deps
         env: 
           token: ${{ secrets.GITHUB_TOKEN }}
-        continue-on-error: false
-        run: npm install
+        continue-on-error: true
+        run: npm list
 
-      - run: npm list
+      - run: npm ci
       - run: npm run build
       - run: npm run test --if-present
       - run: npm run serve --if-present
