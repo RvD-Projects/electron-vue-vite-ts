@@ -83,23 +83,8 @@ jobs:
         continue-on-error: true
         run: npm ci
 
-      - name: Installed
-        with:
-          github_token: ${{ secrets.github_token }}
-        run: npm list
-
-      - name: Build
-        with:
-          github_token: ${{ secrets.github_token }}
-        run: npm build
-
-      - name: Test
-        with:
-          github_token: ${{ secrets.github_token }}
-        run: npm test --if-present
-
-      - name: Serve
-        with:
-          github_token: ${{ secrets.github_token }}
-        run: npm serve --if-present
+      - run: npm list
+      - run: npm build
+      - run: npm test --if-present
+      - run: npm serve --if-present
 
