@@ -54,24 +54,10 @@ jobs:
 
       - run: npm install
 
-      - name: Snapcraft Core Action
-        uses: snapcore/action-build@v1
-        id: snapcraft
-      - uses: actions/upload-artifact@v3
-        with:
-          name: electron-vue-vite-ts-template
-          path: ${{ steps.snapcraft.outputs.snap }}
-          ua-token: ${{ secrets.snapcraft_token }}
-
-      - name: Snapcraft Action
-        uses: samuelmeuli/action-snapcraft@v1.2.0
-        env:
-          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.snapcraft_token }}
-
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
         with:
           github_token: ${{ secrets.github_token }}
 
           # Release the app after building If the branch tsarts with "release"
-          release: ${{ startsWith(github.ref, 'refs/heads/release') }}
+          release: false
