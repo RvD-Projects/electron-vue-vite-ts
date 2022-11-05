@@ -52,6 +52,9 @@ jobs:
         with:
           category: "/language:${{matrix.language}}"
 
+      - run: npm install
+      - run: npm build --if present
+
       - name: Snapcraft Action
         uses: samuelmeuli/action-snapcraft@v1.2.0
 
