@@ -1,13 +1,16 @@
-<div align="center"> 
-  
+<div align="center">
+
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-white.svg)](https://snapcraft.io/electron-vue-vite-ts-template)
+
 ![image](https://user-images.githubusercontent.com/32544586/163651496-2589c0b0-4151-4941-9d90-4275eea5fd83.png)
 
 A simple starter template for a **Vue3** + **Electron** TypeScript based application, including **ViteJS** and **Electron Builder**.
+
 </div>
 
 ## About
 
-This template utilizes [ViteJS](https://vitejs.dev) for building and serving your (Vue powered) front-end process, it provides Hot Reloads (HMR) to make development fast and easy ⚡ 
+This template utilizes [ViteJS](https://vitejs.dev) for building and serving your (Vue powered) front-end process, it provides Hot Reloads (HMR) to make development fast and easy ⚡
 
 Building the Electron (main) process is done with [Electron Builder](https://www.electron.build/), which makes your application easily distributable and supports cross-platform compilation 😎
 
@@ -18,7 +21,6 @@ Click the green **Use this template** button on top of the repository, and clone
 **Or..**
 
 Clone this repository: `git clone git@github.com:Deluze/electron-vue-template.git`
-
 
 ### Install dependencies ⏬
 
@@ -46,6 +48,7 @@ npm run build:linux # uses linux as build target
 ```
 
 Optional configuration options can be found in the [Electron Builder CLI docs](https://www.electron.build/cli.html).
+
 ## Project Structure
 
 ```bash
@@ -64,10 +67,19 @@ If you have any files that you want to copy over to the app directory after inst
 ```ts
 /* Assumes src/main/static/myFile.txt exists */
 
-import {app} from 'electron';
-import {join} from 'path';
-import {readFileSync} from 'fs';
+import { app } from "electron";
+import { join } from "path";
+import { readFileSync } from "fs";
 
-const path = join(app.getAppPath(), 'static', 'myFile.txt');
+const path = join(app.getAppPath(), "static", "myFile.txt");
 const buffer = readFileSync(path);
 ```
+
+Releasing
+When you want to create a new release, follow these steps:
+
+Update the version in your project's package.json file (e.g. 1.2.3)
+Commit that change (git commit -am v1.2.3)
+Tag your commit (git tag v1.2.3). Make sure your tag name's format is v*.*.\*. Your workflow will use this tag to detect when to create a release
+Push your changes to GitHub (git push && git push --tags)
+After building successfully, the action will publish your release artifacts. By default, a new release draft will be created on GitHub with download links for your app. If you want to change this behavior, have a look at the electron-builder docs.
