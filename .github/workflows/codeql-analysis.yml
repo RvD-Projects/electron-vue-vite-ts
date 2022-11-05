@@ -55,6 +55,15 @@ jobs:
       - run: npm install
 
       - name: Snapcraft Action
+      - uses: snapcore/action-build@v1
+        id: snapcraft
+      - uses: actions/upload-artifact@v3
+        with:
+          name: electron-vue-vite-ts-template
+          path: ${{ steps.snapcraft.outputs.snap }}
+          ua-token: ${{ secrets.snapcraft_token }}
+
+      - name: Snapcraft Action
         uses: samuelmeuli/action-snapcraft@v1.2.0
         env:
           SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.snapcraft_token }}
