@@ -54,6 +54,9 @@ jobs:
         env:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Snapcraft Action
+        uses: samuelmeuli/action-snapcraft@v1.2.0
+
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
         with:
