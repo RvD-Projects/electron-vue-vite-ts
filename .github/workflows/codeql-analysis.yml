@@ -56,8 +56,8 @@ jobs:
 
       - name: Snapcraft Action
         uses: samuelmeuli/action-snapcraft@v1.2.0
-        with:
-          snapcraft_token: ${{ secrets.snapcraft_token }}
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.snapcraft_token }}
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
