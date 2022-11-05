@@ -1,4 +1,5 @@
 import { contextBridge, ipcRenderer } from "electron";
+//import { hello } from "cpu-count";
 
 // It has the same sandbox as a Chrome extension.
 window.addEventListener("DOMContentLoaded", () => {
@@ -8,6 +9,7 @@ window.addEventListener("DOMContentLoaded", () => {
       element.innerText = text;
     }
   };
+  
 
   for (const type of ["chrome", "node", "electron"]) {
     replaceText(
