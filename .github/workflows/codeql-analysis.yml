@@ -25,6 +25,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
@@ -48,11 +52,12 @@ jobs:
         with:
           category: "/language:${{matrix.language}}"
 
-      - uses: actions/checkout@v3
+      - run: npm install
+
+      - name: Snapcraft Action
+        uses: samuelmeuli/action-snapcraft@v1.2.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-        env:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          snapcraft_token: ${{ secrets.snapcraft_token }}
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
