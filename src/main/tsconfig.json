@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
-    "target": "ES2015",
-    "module": "commonjs",
     "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "sourceMap": true,
     "outDir": "../../build/main",
-    "allowJs": true,
-    "noImplicitAny": false,
+    "baseUrl": ".",
+    "paths": {
+      "*": ["node_modules/*"]
+    }
   },
   "exclude": ["static"]
 }
