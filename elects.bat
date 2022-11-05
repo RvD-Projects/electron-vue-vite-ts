@@ -1,0 +1,1 @@
+call electronegativity -i ./ -o ./opsec/windows-latest/dev-results.sarif

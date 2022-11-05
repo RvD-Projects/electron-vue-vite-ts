@@ -1,17 +1,16 @@
 name: "CodeQL"
 
 on:
+  create:
+    branches : ["dev", "releases/**"]
   push:
-    branches: [ "dev" ]
+    branches: ["dev", "releases/**"]
   pull_request:
-    # The branches below must be a subset of the branches above
-    branches: [ "dev" ]
-  schedule:
-    - cron: '24 23 * * 4'
+    branches: ["dev", "releases/**"]
 
 jobs:
   analyze:
-    name: Analyze
+    name: Analyze/Build
     runs-on: ${{ matrix.os }}
     permissions:
       actions: read
@@ -20,47 +19,56 @@ jobs:
 
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Install Node.js, NPM and Yarn
-      uses: actions/setup-node@v1
-      with:
-        node-version: 18
-
-
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v2
-      with:
-        languages: ${{ matrix.language }}
-
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v2
-
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v2
-      with:
-        category: "/language:${{matrix.language}}"
-
-  build:
-
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
         node-version: [18.x]
+        os: [windows-latest, ubuntu-latest, macos-latest]
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm run test --if-present
-      - run: npm run serve --if-present
+          cache: 'npm'
+        env:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
+      - uses: doyensec/electronegativity-action@v1.1
+      - name: Upload sarif
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: ./opsec/${{ matrix.os }}/results-${{ github.event.repository.updated_at}}.sarif
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v2
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+        with:
+          category: "/language:${{matrix.language}}"
+       
+
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build/release Electron app
+        uses: samuelmeuli/action-electron-builder@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+
+          # Release the app after building If the branch tsarts with "release"
+          release: ${{ startsWith(github.ref, 'refs/heads/release') }}
+
+        
+
+   
