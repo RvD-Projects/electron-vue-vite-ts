@@ -53,16 +53,7 @@ jobs:
           category: "/language:${{matrix.language}}"
 
       - run: npm install
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
-
       - run: npm run build --if present
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
 
       - name: Snapcraft Action
         uses: samuelmeuli/action-snapcraft@v1.2.0
