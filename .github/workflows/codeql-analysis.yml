@@ -48,8 +48,6 @@ jobs:
         with:
           category: "/language:${{matrix.language}}"
 
-      - uses: doyensec/electronegativity-action@v1.1
-
       - uses: actions/checkout@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
