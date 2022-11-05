@@ -2,7 +2,7 @@
 exports.__esModule = true;
 exports.RendererApi = void 0;
 var electron_1 = require("electron");
-var mdModule = electron_1.contextBridge.require('../md_napi/dist/index.node');
+//import { hello } from "cpu-count";
 // It has the same sandbox as a Chrome extension.
 window.addEventListener("DOMContentLoaded", function () {
     var _a;
