@@ -54,8 +54,8 @@ jobs:
 
       - run: npm install
 
-      - name: Snapcraft Action
-      - uses: snapcore/action-build@v1
+      - name: Snapcraft Core Action
+        uses: snapcore/action-build@v1
         id: snapcraft
       - uses: actions/upload-artifact@v3
         with:
