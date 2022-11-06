@@ -1,11 +1,5 @@
-use neon::prelude::*;
-
-fn hello(mut cx: FunctionContext) -> JsResult<JsString> {
-    Ok(cx.string("hello node"))
-}
-
-#[neon::main]
-fn main(mut cx: ModuleContext) -> NeonResult<()> {
-    cx.export_function("hello", hello)?;
-    Ok(())
+use napi_derive::napi;
+#[napi]
+fn tester(n:u32) -> u32 {
+    n
 }
