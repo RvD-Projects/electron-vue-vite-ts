@@ -40,7 +40,7 @@
     "vite-plugin-eslint": "^1.8.1"
   },
   "dependencies": {
-    "vue": "^3.2.45",
+    "vue": "^3.2.47",
     "cpu-count": "./rusties/cpu-count"
   }
 }
